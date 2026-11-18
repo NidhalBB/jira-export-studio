@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="app-token" content="{{ token }}">
+  <title>Export Data | Jira Export Studio</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-content">
+      <h1 class="app-title">Jira Export Studio</h1>
+      <span class="user-info">{{ email }}</span>
+      <button id="logout-btn" class="logout-button">Disconnect</button>
+    </div>
+  </header>
+
+  <main class="export-container">
+    <div class="export-panel">
+      <h2>Custom Data Export</h2>
+      
+      <form id="export-form">
+        <div class="form-section">
+          <h3>Select Projects</h3>
+          <div id="project-list" class="project-list"></div>
+          <p id="project-error" class="error-text" style="display: none;"></p>
+        </div>
+
+        <div class="form-section">
+          <h3>Date Range</h3>
+          <div class="date-inputs">
+            <div class="form-group">
+              <label for="start-date">From</label>
+              <input type="date" id="start-date" required>
+            </div>
+            <div class="form-group">
+              <label for="end-date">To</label>
+              <input type="date" id="end-date" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h3>Columns to Export</h3>
+          <div class="column-selector-container">
+            <!-- Selected Fields (Left) -->
+            <div class="selected-fields-box">
+              <h4>Selected Fields</h4>
+              <div id="selected-fields"></div>
+            </div>
+
+            <!-- Available Custom Fields (Right) -->
+            <div class="available-fields-box">
+              <h4>Available Custom Fields</h4>
+              <input type="text" id="custom-fields-search" placeholder="🔍 Search..." class="custom-fields-search">
+              <div id="custom-fields"></div>
+            </div>
+          </div>
+          <p id="column-error" class="error-text" style="display: none;"></p>
+        </div>
+
+        <div class="form-section">
+          <h3>Status Transitions (Optional)</h3>
+          <div id="status-list" class="status-list"></div>
+          <p class="field-hint">Select statuses to include their transition dates</p>
+        </div>
+
+        <button type="submit" class="primary-button">Export to Excel</button>
+        <p id="form-error" class="error-message" style="display: none;"></p>
+      </form>
+    </div>
+  </main>
+
+  <script src="{{ url_for('static', filename='export.js') }}"></script>
+</body>
+</html>

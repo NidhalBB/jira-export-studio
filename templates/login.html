@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="app-token" content="{{ token }}">
+  <title>Connect to Jira | Jira Export Studio</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-panel">
+      <div class="login-header">
+        <h1>Jira Export Studio</h1>
+        <p>Connect to your Jira workspace</p>
+      </div>
+      <form id="login-form">
+        <div class="form-group">
+          <label for="base-url">Jira Base URL</label>
+          <input 
+            type="url" 
+            id="base-url" 
+            placeholder="https://your-company.atlassian.net"
+            required
+          >
+          <span class="field-hint">Include the protocol (https://)</span>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input 
+            type="email" 
+            id="email" 
+            placeholder="your-email@example.com"
+            required
+          >
+        </div>
+        <div class="form-group">
+          <label for="api-token">API Token</label>
+          <input 
+            type="password" 
+            id="api-token" 
+            placeholder="Your API token"
+            required
+          >
+          <span class="field-hint">
+            <a href="https://id.atlassian.com/manage-profile/security/api-tokens" target="_blank" rel="noopener">
+              Get your API token →
+            </a>
+          </span>
+        </div>
+        <button type="submit" class="primary-button">Connect</button>
+        <p id="error-message" class="error-message" style="display: none;"></p>
+      </form>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='login.js') }}"></script>
+</body>
+</html>
